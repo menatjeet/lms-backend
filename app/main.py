@@ -4,6 +4,10 @@ from sqlalchemy import text
 from app.core.config import settings
 from app.database.connection import engine
 
+from app.api.auth import router as auth_router
+from app.api.instructor import router as instructor_router
+from app.api.admin import router as admin_router
+
 app = FastAPI(title=settings.PROJECT_NAME)
 
 
@@ -23,4 +27,9 @@ def database_check():
         return {
             "database": "Connection Failed",
             "error": str(error)
-        }    
+        }   
+
+
+app.include_router(auth_router) 
+app.include_router(admin_router)
+app.include_router(instructor_router)
