@@ -7,6 +7,7 @@ from app.database.connection import engine
 from app.api.auth import router as auth_router
 from app.api.instructor import router as instructor_router
 from app.api.admin import router as admin_router
+from app.api.courses import router as courses_router
 
 app = FastAPI(title=settings.PROJECT_NAME)
 
@@ -33,3 +34,4 @@ def database_check():
 app.include_router(auth_router) 
 app.include_router(admin_router)
 app.include_router(instructor_router)
+app.include_router(courses_router)
