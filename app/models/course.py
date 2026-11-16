@@ -1,6 +1,6 @@
 from datetime import datetime , timezone
 from sqlalchemy import String, Text, DateTime, ForeignKey
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.database.connection import Base
 
 class Course(Base):
@@ -27,3 +27,8 @@ class Course(Base):
         default=lambda: datetime.now(timezone.utc),
         nullable=False
     )
+
+    lessons = relationship(
+    "Lesson",
+    back_populates="course"
+)
